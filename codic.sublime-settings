@@ -1,4 +1,8 @@
 {
     "api_url": "https://api.codic.jp/v1",
-    "access_token": "Mx628YPThKmgTZ1VgymioSxwv0G2X2pC9"
+    "access_token": "",
+
+    // natural, camel, pascal, lower underscore, upper underscore, hyphen
+    "casing": "natural",
+    "acronym_style": "camel strict"
 }

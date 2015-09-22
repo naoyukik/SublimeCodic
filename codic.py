@@ -5,21 +5,31 @@ import urllib.parse
 import json
 
 
-class codicReplaceWordCommand(sublime_plugin.TextCommand):
-    def run(self, edit, casing="camel", project_id=None, selection_word=None):
-        sels = self.view.sel()
-        for sel in sels:
-            selection_word = self.view.substr(sel)
+class codicTranslateStringCommand(sublime_plugin.TextCommand):
+    def run(self, edit, casing=None, project_id=None, input_word=None):
+        input_flag = False
+        if input_word is None:
+            sels = self.view.sel()
+            for sel in sels:
+                selection_word = self.view.substr(sel)
+            if selection_word is None or selection_word == '':
+                sublime.active_window().run_command('codic_input_string')
+        else:
+            selection_word = input_word
+            input_flag = True
+
         if selection_word == '':
-            # self.window = sublime.active_window()
-            # self.window.run_command("codic_replace_word")
             sublime.status_message('No word was selected.')
             return
+
+        casing = setCasingSetting(casing)
+        acronym_style = getAcronymStyleSetting()
 
         url = getApiUrl()+'/engine/translate.json'
         values = {
             'text': selection_word,
-            'casing': casing
+            'casing': casing,
+            'acronym_style': acronym_style
         }
 
         if project_id is not None:
@@ -34,11 +44,13 @@ class codicReplaceWordCommand(sublime_plugin.TextCommand):
             data = json.loads(the_page.decode('utf-8'))
             if data[0]['successful']:
                 result = data[0]['translated_text']
-                self.view.replace(edit, sel, result)
+                if input_flag:
+                    self.view.insert(edit, self.view.sel()[0].a, result)
+                else:
+                    self.view.replace(edit, sel, result)
 
 
 class codicGetProjectIdsCommand(sublime_plugin.TextCommand):
-    """docstring for getProjectId"""
     def run(self, edit):
         self.items = []
 
@@ -66,28 +78,28 @@ class codicGetProjectIdsCommand(sublime_plugin.TextCommand):
         })
 
 
-class codicInputWordCommand(sublime_plugin.TextCommand):
+class codicInputStringCommand(sublime_plugin.TextCommand):
     """docstring for inputTranslationWord"""
     def run(self, edit):
         self.window = sublime.active_window()
-        self.window.show_input_panel("codic input word", "", self.on_done, self.on_change, self.on_cancel)
+        self.window.show_input_panel("codic input string", "", self.on_done, self.on_change, self.on_cancel)
 
     def on_done(self, word):
-        print(word)
-        self.window.run_command("codic_replace_word", {
-            "word": word
+        self.window.run_command("codic_translate_string", {
+            "input_word": word
         })
 
     def on_cancel(self):
         pass
 
-    def on_change():
+    def on_change(self):
         pass
 
 
 def requestApi(url, values, headers):
     data = urllib.parse.urlencode(values)
     full_url = url+'?'+data
+    print(full_url)
     req = urllib.request.Request(full_url, None, headers, None, False, 'GET')
     return req
 
@@ -103,3 +115,13 @@ def getApiUrl():
 def getAutorizationHeader():
     access_token = getSettings().get('access_token')
     return {'Authorization': 'Bearer '+access_token}
+
+
+def setCasingSetting(casing):
+    if casing is None:
+        return getSettings().get('casing')
+    return casing
+
+
+def getAcronymStyleSetting():
+    return getSettings().get('acronym_style')

@@ -1,0 +1,14 @@
+[
+    {
+        "caption": "codic: translate",
+        "command": "codic_translate_string"
+    },
+    {
+        "caption": "codic: get Project Id list",
+        "command": "codic_get_project_ids"
+    },
+    {
+        "caption": "codic: input",
+        "command": "codic_input_string"
+    }
+]
