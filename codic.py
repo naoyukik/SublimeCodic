@@ -99,7 +99,6 @@ class codicInputStringCommand(sublime_plugin.TextCommand):
 def requestApi(url, values, headers):
     data = urllib.parse.urlencode(values)
     full_url = url+'?'+data
-    print(full_url)
     req = urllib.request.Request(full_url, None, headers, None, False, 'GET')
     return req
 
