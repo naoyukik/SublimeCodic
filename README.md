@@ -11,15 +11,13 @@ codic公式サイト: [https://codic.jp/](https://codic.jp/)
 現在のところ、Package Controlに対応していません。  
 BitbucketからMercurialを使用してSublime Text 3のPackages配下にDLしてください。
 
-```
-#!bash
+``` bash
 $ hg clone ssh://hg@bitbucket.org/dat/sublimecodic
 ```
 
 # キーバインド
 
-```
-#!json
+``` json
 {
   "keys": ["alt+d"], "command": "codic_translate_string", "args": {"casing": "camel"},
   "keys": ["alt+t"], "command": "codic_translate_string", "args": {"casing": "camel", "acronym_style": "camel strict"},
@@ -29,8 +27,7 @@ $ hg clone ssh://hg@bitbucket.org/dat/sublimecodic
 
 # セッティング
 
-```
-#!json
+``` json
 {
     "access_token": "codicサイトから取得した自分のアクセストークン",
     "casing": "camel",
