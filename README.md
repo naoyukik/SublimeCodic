@@ -8,12 +8,13 @@ codic公式サイト: [https://codic.jp/](https://codic.jp/)
 - Project IDは codic_get_project_ids を呼び出して確認したIDをキーコンフィグで設定して使用します(設定方法は下記参照)。
 
 # インストール
-現在のところ、Package Controlに対応していません。  
-BitbucketからMercurialを使用してSublime Text 3のPackages配下にDLしてください。
 
-``` bash
-$ hg clone ssh://hg@bitbucket.org/dat/sublimecodic
-```
+- Package Control: Add Repository
+
+  コマンドパレットの Package Control: Add Repository コマンドを使用し、下記のURLを登録してください。その後、Package Control から Install 出来るようになります
+
+  https://github.com/naoyukik/SublimeConvertFullHalfWidth
+
 
 # キーバインド
 
