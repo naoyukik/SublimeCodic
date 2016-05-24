@@ -8,17 +8,17 @@
                 "children":
                 [
                     {
-                        "caption": "codic",
+                        "caption": "SublimeCodic",
                         "children":
                         [
                             {
                                 "command": "open_file",
-                                "args": { "file": "${packages}/Codic/codic.sublime-settings" },
+                                "args": { "file": "${packages}/SublimeCodic/SublimeCodic.sublime-settings" },
                                 "caption": "Settings - Default"
                             },
                             {
                                 "command": "open_file",
-                                "args": { "file": "${packages}/User/codic.sublime-settings" },
+                                "args": { "file": "${packages}/User/SublimeCodic.sublime-settings" },
                                 "caption": "Settings - User"
                             }
                         ]
