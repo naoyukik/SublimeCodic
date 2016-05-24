@@ -15,7 +15,7 @@ codic公式サイト: https://codic.jp/
 Package Control: Add Repository
   コマンドパレットの Package Control: Add Repository コマンドを使用し、下記のURLを登録してください。その後、Package Control から Install 出来るようになります
 
-  https://github.com/naoyukik/SublimeConvertFullHalfWidth
+  https://github.com/naoyukik/SublimeCodic
 
 
 キーバインド
