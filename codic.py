@@ -104,7 +104,7 @@ def requestApi(url, values, headers):
 
 
 def getSettings():
-    return sublime.load_settings("codic.sublime-settings")
+    return sublime.load_settings("SublimeCodic.sublime-settings")
 
 
 def getApiUrl():
